@@ -2,16 +2,20 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+global:
+  image:
+    registry: ""
+    tag: ""
+
 replicaCount: 1
 
 image:
   registry: ""
   repository: abdoutlili/rmet-xapp
+  tag: '{{ .Chart.AppVersion }}'
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
   pullSecrets: []
-  
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: "rmet-xapp"
@@ -19,6 +23,7 @@ fullnameOverride: "rmet-xapp"
 storage: {}
 
 service:
+  # TODO: External NodePort service should be disabled by default
   grpc:
     port: 5150
   gnmi:
@@ -28,7 +33,6 @@ service:
     nodePort:
       enabled: false
       port: 31701
-
 
 config:
   rmet:
@@ -49,15 +53,13 @@ resources: {}
   #   memory: 128Mi
   # requests:
   #   cpu: 100m
-  #   memory: 128Mi
-
+#   memory: 128Mi
 
 nodeSelector: {}
 
 tolerations: []
 
 affinity: {}
-
 
 logging:
   loggers:
