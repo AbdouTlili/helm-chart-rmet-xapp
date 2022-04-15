@@ -12,7 +12,7 @@ replicaCount: 1
 image:
   registry: ""
   repository: abdoutlili/rmet-xapp
-  tag: '{{ .Chart.AppVersion }}'
+  tag: 'latest'
   pullPolicy: IfNotPresent
   pullSecrets: []
 
